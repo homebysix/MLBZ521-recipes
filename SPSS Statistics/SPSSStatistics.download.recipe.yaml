@@ -1,7 +1,5 @@
 Description: |
   Downloads the latest or a specified version of SPSS Statistics from a local file share.
-
-  Supports the new format found with SPSS v27.
 Identifier: com.github.mlbz521.download.SPSSStatistics
 Input:
   FILE_SHARE: /path/to/offline/repository

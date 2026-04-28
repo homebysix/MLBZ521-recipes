@@ -1,7 +1,5 @@
 Description: |
   Downloads and packages the latest or a specified version of SPSS Statistics from a local file share.
-
-  Supports the new format found with SPSS v27.
 Identifier: com.github.mlbz521.pkg.SPSSStatistics
 Input:
   NAME: SPSS Statistics
@@ -18,7 +16,7 @@ Process:
     purge_destination: 'true'
 - Processor: FileFinder
   Arguments:
-    pattern: '%RECIPE_CACHE_DIR%/unpack/IBM*/SPSS Statistics.app/Contents/Info.plist'
+    pattern: '%RECIPE_CACHE_DIR%/unpack/IBM*/IBM SPSS Statistics.app/Contents/Info.plist'
 - Processor: Versioner
   Arguments:
     input_plist_path: '%found_filename%'
