@@ -1,0 +1,52 @@
+Description: Downloads the latest version of MySQL Community Server for macOS.
+
+  Downloads both the ARM and Intel builds.
+Identifier: com.github.mlbz521.download.MySQLCommunityServer-Universal
+MinimumVersion: "2.3"
+Input:
+  NAME: MySQL Community Server
+  PKG_NAME: MySQL Community Server (Universal)
+  RELEASE: "8.0"
+  ARM_ARCHITECTURE: arm64
+  INTEL_ARCHITECTURE: x86_64
+  SEARCH_URL: https://dev.mysql.com/downloads/mysql/?tpl=files&os=33&version=%RELEASE%
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%SEARCH_URL%"
+      re_pattern: (?P<dmg>mysql-(?P<base_version>[\d\.]+)-macos[\d]+-%ARM_ARCHITECTURE%\.dmg)
+  - Processor: URLDownloader
+    Arguments:
+      url: https://dev.mysql.com/get/Downloads/MySQL-%base_version%/%dmg%
+      prefetch_filename: True
+  - Processor: EndOfCheckPhase
+    Arguments:
+      arm_path: "%pathname%"
+      arm_version: "%base_version%"
+  - Processor: URLTextSearcher
+    Arguments:
+      url: "%SEARCH_URL%"
+      re_pattern: (?P<dmg>mysql-(?P<base_version>[\d\.]+)-macos[\d]+-%INTEL_ARCHITECTURE%\.dmg)
+  - Processor: URLDownloader
+    Arguments:
+      url: https://dev.mysql.com/get/Downloads/MySQL-%base_version%/%dmg%
+      prefetch_filename: True
+  - Processor: EndOfCheckPhase
+    Arguments:
+      intel_path: "%pathname%"
+      intel_version: "%base_version%"
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%arm_path%/*.pkg"
+      expected_authority_names:
+        - "Developer ID Installer: Oracle America, Inc. (VB5E2TV963)"
+        - Developer ID Certification Authority
+        - Apple Root CA
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%intel_path%/*.pkg"
+      expected_authority_names:
+        - "Developer ID Installer: Oracle America, Inc. (VB5E2TV963)"
+        - Developer ID Certification Authority
+        - Apple Root CA
+  - Processor: EndOfCheckPhase
