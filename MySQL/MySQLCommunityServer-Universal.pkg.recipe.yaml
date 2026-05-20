@@ -2,7 +2,7 @@ Description: Downloads the latest MySQL Community Server for both ARM and Intel 
 
   The ARM and Intel version builds **must match** for a package to be created.
 Identifier: com.github.mlbz521.pkg.MySQLCommunityServer-Universal
-ParentRecipe: com.github.gerardkok.download.MySQLCommunityServer-Universal
+ParentRecipe: com.github.mlbz521.download.MySQLCommunityServer-Universal
 MinimumVersion: '2.3'
 Input:
   NAME: MySQL Community Server
