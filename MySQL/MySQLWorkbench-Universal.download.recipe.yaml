@@ -8,16 +8,14 @@ MinimumVersion: "2.3"
 Input:
   NAME: MySQL Workbench
   PKG_NAME: MySQL Workbench (Universal)
-  USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15
   ARM_ARCHITECTURE: arm64
   INTEL_ARCHITECTURE: x86_64
+  SEARCH_URL: https://dev.mysql.com/downloads/workbench/?tpl=files&os=33
 Process:
   - Processor: URLTextSearcher
     Arguments:
-      url: https://dev.mysql.com/downloads/workbench
+      url: "%SEARCH_URL%"
       re_pattern: (?P<dmg>mysql-workbench-community-(?P<base_version>[\d\.]+)-macos-%ARM_ARCHITECTURE%\.dmg)
-      request_headers:
-        user-agent: "%USER_AGENT%"
   - Processor: URLDownloader
     Arguments:
       url: https://dev.mysql.com/get/Downloads/MySQLGUITools/%dmg%
@@ -28,7 +26,7 @@ Process:
       arm_version: "%base_version%"
   - Processor: URLTextSearcher
     Arguments:
-      url: https://dev.mysql.com/downloads/workbench
+      url: "%SEARCH_URL%"
       re_pattern: (?P<dmg>mysql-workbench-community-(?P<base_version>[\d\.]+)-macos-%INTEL_ARCHITECTURE%\.dmg)
   - Processor: URLDownloader
     Arguments:
