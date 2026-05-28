@@ -7,13 +7,15 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Anaconda CLI (.sh) installer, sets permissions as executable, and creates a package.
 
+PLEASE NOTE:  This recipe only supports the `.sh` installer type!
+
 Default install path is set to:  "/Users/Shared/anaconda3" -- adjustable via substitution variable in an override.</string>
 	<key>Input</key>
 	<dict>
 		<key>PYTHON_MAJOR_VERSION</key>
 		<string>3</string>
 		<key>NAME</key>
-		<string>Anaconda%PYTHON_MAJOR_VERSION%</string>
+		<string>Anaconda</string>
 		<key>PKG_ID_PREFIX</key>
 		<string>com.github.mlbz521</string>
 		<key>PKG_INSTALL_LOCATION</key>
@@ -130,9 +132,9 @@ exit 0</string>
 					<key>chown</key>
 					<array/>
 					<key>id</key>
-					<string>%PKG_ID_PREFIX%.%NAME%-%version%.pkg</string>
+					<string>%PKG_ID_PREFIX%.%NAME%%PYTHON_MAJOR_VERSION%-%version%.pkg</string>
 					<key>pkgname</key>
-					<string>%NAME%-%ARCH%-%version%</string>
+					<string>%NAME%%PYTHON_MAJOR_VERSION%-%ARCH%-%version%</string>
 					<key>pkgroot</key>
 					<string>%RECIPE_CACHE_DIR%/pkgroot</string>
 					<key>pkgtype</key>
