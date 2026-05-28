@@ -16,6 +16,9 @@ Input:
   SEARCH_PATTERN_ARM: (?P<url>https\://repo\.(anaconda\.com|continuum\.io)/archive/Anaconda%PYTHON_MAJOR_VERSION%-(?P<version>[0-9.|-]+)-MacOSX-%ARM_ARCHITECTURE%\.%INSTALLER_TYPE%)
   SEARCH_PATTERN_INTEL: (?P<url>https\://repo\.(anaconda\.com|continuum\.io)/archive/Anaconda%PYTHON_MAJOR_VERSION%-(?P<version>[0-9.|-]+)-MacOSX-%INTEL_ARCHITECTURE%\.%INSTALLER_TYPE%)
 Process:
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: "Deprecating this recipe as Intel packages are no longer being built.  See:  https://www.anaconda.com/blog/intel-mac-package-support-deprecation -- Switch to 'com.github.hansen-m.download.Anaconda'"
   - Processor: URLTextSearcher
     Arguments:
       url: "%SEARCH_URL%"

@@ -10,6 +10,9 @@ Input:
   PKG_ID_PREFIX: com.continuum.anaconda.universal
   PKG_INSTALL_LOCATION: /Users/Shared/anaconda3
 Process:
+  - Processor: DeprecationWarning
+    Arguments:
+      warning_message: "Deprecating this recipe as Intel packages are no longer being built.  See:  https://www.anaconda.com/blog/intel-mac-package-support-deprecation -- Switch to 'com.github.mlbz521.pkg.Anaconda'"
   - Processor: StopProcessingIf
     Arguments:
       predicate: '"%intel_version%" != "%arm_version%"'
