@@ -8,7 +8,7 @@ Input:
   PKG_NAME: UltiMaker Cura (Universal)
   ARM_ARCHITECTURE: ARM64
   INTEL_ARCHITECTURE: X64
-  PRERELEASE: False
+  PRERELEASE: "False"
 Process:
   - Processor: GitHubReleasesInfoProvider
     Arguments:
